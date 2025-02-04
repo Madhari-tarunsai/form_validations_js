@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form_validation</title>
+</head>
+<style>
+    body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+        box-sizing: content-box;
+        text-align: center;
+        margin: 0;
+        height: 100vh;
+        background-color: black;
+        
+    }
+#error{
+    display: none;
+}
+#error1{
+    display: none;
+}
+#myform{
+    border: 5px solid black;
+    padding: 30px;
+    width: 250px;
+    height: auto;
+    background-color: bisque;
+    box-shadow: 1px 2px 12px 12px plum;
+    border-radius: 40px;
+    transform: scale(1.1); /* Scale and rotate */
+    transition: transform 0.3s ease; 
+    
+}
+#myform:hover{
+  
+    background-color: bisque;
+    box-shadow: 1px 2px 12px 12px darkmagenta;
+    border-radius: 40px;
+    transform: scale(1.2) rotate(0deg);
+    
+}
+</style>
+<body>
+    <form id="myform">
+        <h1 style="text-decoration: underline;">Form Validation</h1>
+        <label for="name">enter_your name:-</label>
+        <input type="text" id="name"><br><br>
+        <span id="error">please enter vaild user_name</span><br><br>
+        <label for="pswd">enter_password:-</label>
+        <input type="pswd" id="pswd"><br><br>
+        <span id="error1">please enter vaild password</span><br><br>
+        <input type="submit">
+    </form>
+    <script>
+        let form=document.getElementById("myform")
+        let ip1=document.getElementById("name")
+        let ip2=document.getElementById("pswd")
+        let error=document.getElementById("error")
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault;
+        })
+        ip1.addEventListener("focus",()=>{
+            ip1.style.backgroundColor="orange"
+        })
+        ip1.addEventListener("blur",()=>{
+            let user_name=/^[a-zA-Z][a-zA-Z0-9._]{3,15}$/
+            let op=user_name.test(ip1.value)
+            if (!op) {
+                ip1.style.backgroundColor = "red";
+                error.style.display="inline-block"
+                error.style.color="red"
+                error.style.marginTop="-40px"
+            } else {
+                ip1.style.backgroundColor = "white"; // Reset if valid
+            }
+            // ip1.style.backgroundColor="red"
+        })
+        ip2.addEventListener("focus",()=>{
+            ip2.style.backgroundColor="orange"
+        })
+        ip2.addEventListener("blur",()=>{
+            let enter_password=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/
+            let op=enter_password.test(ip2.value)
+            if (!op) {
+                ip1.style.backgroundColor = "red";
+                error1.style.display="inline-block"
+                error1.style.color="red"
+                error1.style.marginTop="-40px"
+            } else {
+                ip2.style.backgroundColor = "white"; // Reset if valid
+            }
+            // ip1.style.backgroundColor="red"
+        })
+
+    </script>
+</body>
+</html>
